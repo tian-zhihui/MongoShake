@@ -2,9 +2,10 @@ package collector
 
 import (
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"sync/atomic"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	"github.com/alibaba/MongoShake/v2/collector/ckpt"
 	conf "github.com/alibaba/MongoShake/v2/collector/configure"
@@ -136,9 +137,9 @@ func NewOplogSyncer(
 	filterList := filter.OplogFilterChain{new(filter.AutologousFilter), new(filter.NoopFilter), filter.NewGidFilter(gids)}
 
 	// namespace filter, heavy operation
-	if len(conf.Options.FilterNamespaceWhite) != 0 || len(conf.Options.FilterNamespaceBlack) != 0 {
+	if len(conf.Options.FilterNamespaceWhite) != 0 || len(conf.Options.FilterNamespaceBlack) != 0 || len(conf.Options.FilterNamespaceWhiteRegex) != 0 || len(conf.Options.FilterNamespaceBlackRegex) != 0 {
 		namespaceFilter := filter.NewNamespaceFilter(conf.Options.FilterNamespaceWhite,
-			conf.Options.FilterNamespaceBlack)
+			conf.Options.FilterNamespaceBlack, conf.Options.FilterNamespaceWhiteRegex, conf.Options.FilterNamespaceBlackRegex)
 		filterList = append(filterList, namespaceFilter)
 	}
 

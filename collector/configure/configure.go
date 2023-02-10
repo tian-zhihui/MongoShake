@@ -35,6 +35,8 @@ type Configuration struct {
 	TunnelMongoSslRootCaFile               string   `config:"tunnel.mongo_ssl_root_ca_file"` // add v2.6.2
 	FilterNamespaceBlack                   []string `config:"filter.namespace.black"`
 	FilterNamespaceWhite                   []string `config:"filter.namespace.white"`
+	FilterNamespaceWhiteRegex              []string `config:"filter.namespace.whiteRegex"`
+	FilterNamespaceBlackRegex              []string `config:"filter.namespace.blackRegex"`
 	FilterPassSpecialDb                    []string `config:"filter.pass.special.db"`
 	FilterDDLEnable                        bool     `config:"filter.ddl_enable"`
 	FilterOplogGids                        bool     `config:"filter.oplog.gids"` // add v2.4.17

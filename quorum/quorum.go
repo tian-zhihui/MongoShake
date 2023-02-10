@@ -145,7 +145,7 @@ func BecomeMaster(uri string, db string) error {
 					if time.Now().Unix()-heartbeat >= int64(HeartBeatTimeoutInSeconds) {
 						// I wanna be the master. DON'T care about the success of update
 						masterCollection.UpdateOne(context.Background(),
-							bson.D{{"_id", electionObjectId}},bson.M{"$set": promotion()})
+							bson.D{{"_id", electionObjectId}}, bson.M{"$set": promotion()})
 						LOG.Info("Expired master found. compete to become master")
 						// wait random time. just disrupt others compete
 						wait(time.Millisecond * time.Duration(rand.Uint32()%2500+1))

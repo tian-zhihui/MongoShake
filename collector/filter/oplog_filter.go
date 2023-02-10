@@ -132,10 +132,21 @@ func covertToWhiteDBRule(input []string) map[string]bool {
 	return whiteDBRuleMap
 }
 
-func NewNamespaceFilter(white, black []string) *NamespaceFilter {
-	whiteRule := convertToRule(white)
-	blackRule := convertToRule(black)
-	whiteDBRuleMap := covertToWhiteDBRule(white)
+func NewNamespaceFilter(white, black, whiteRegex, blackRegex []string) *NamespaceFilter {
+	var whiteRule, blackRule string
+	whiteDBRuleMap := map[string]bool{}
+	// regex is high priority
+	if len(whiteRegex) > 0 {
+		whiteRule = strings.Join(whiteRegex, "|")
+	} else {
+		whiteRule = convertToRule(white)
+		whiteDBRuleMap = covertToWhiteDBRule(white)
+	}
+	if len(blackRegex) > 0 {
+		blackRule = strings.Join(blackRegex, "|")
+	} else {
+		blackRule = convertToRule(black)
+	}
 
 	return &NamespaceFilter{
 		whiteRule:      whiteRule,

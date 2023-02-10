@@ -106,9 +106,9 @@ func (filter *NamespaceFilter) FilterNs(namespace string) bool {
 
 func NewDocFilterList() DocFilterChain {
 	filterList := DocFilterChain{new(AutologousFilter)}
-	if len(conf.Options.FilterNamespaceWhite) != 0 || len(conf.Options.FilterNamespaceBlack) != 0 {
+	if len(conf.Options.FilterNamespaceWhite) != 0 || len(conf.Options.FilterNamespaceBlack) != 0 || len(conf.Options.FilterNamespaceWhiteRegex) != 0 || len(conf.Options.FilterNamespaceBlackRegex) != 0 {
 		namespaceFilter := NewNamespaceFilter(conf.Options.FilterNamespaceWhite,
-			conf.Options.FilterNamespaceBlack)
+			conf.Options.FilterNamespaceBlack, conf.Options.FilterNamespaceWhiteRegex, conf.Options.FilterNamespaceBlackRegex)
 		filterList = append(filterList, namespaceFilter)
 	}
 	return filterList

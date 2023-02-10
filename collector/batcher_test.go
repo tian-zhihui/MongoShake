@@ -2,10 +2,11 @@ package collector
 
 import (
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"testing"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	conf "github.com/alibaba/MongoShake/v2/collector/configure"
 	"github.com/alibaba/MongoShake/v2/collector/filter"
@@ -2749,11 +2750,11 @@ func TestBatchMore(t *testing.T) {
 	}
 }
 
-func mockBatcher(nsWhite []string, nsBlack []string) *Batcher {
+func mockBatcher(nsWhite []string, nsBlack []string, nsWhiteRegex []string, nsBlackRegex []string) *Batcher {
 	filterList := filter.OplogFilterChain{new(filter.AutologousFilter), new(filter.NoopFilter)}
 	// namespace filter
 	if len(nsWhite) != 0 || len(nsBlack) != 0 {
-		namespaceFilter := filter.NewNamespaceFilter(nsWhite, nsBlack)
+		namespaceFilter := filter.NewNamespaceFilter(nsWhite, nsBlack, nsWhiteRegex, nsBlackRegex)
 		filterList = append(filterList, namespaceFilter)
 	}
 	return &Batcher{

@@ -8,8 +8,8 @@ import (
 
 	"github.com/alibaba/MongoShake/v2/oplog"
 
-	utils "github.com/alibaba/MongoShake/v2/common"
 	conf "github.com/alibaba/MongoShake/v2/collector/configure"
+	utils "github.com/alibaba/MongoShake/v2/common"
 	"github.com/gugemichael/nimo4go"
 	LOG "github.com/vinllen/log4go"
 )

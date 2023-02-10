@@ -12,4 +12,6 @@ require (
 	github.com/vinllen/go-diskqueue v1.0.2-0.20210318091137-9e570abf8db4
 	github.com/vinllen/log4go v0.0.0-20180514124125-3848a366df9d
 	go.mongodb.org/mongo-driver v1.9.0
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
 )

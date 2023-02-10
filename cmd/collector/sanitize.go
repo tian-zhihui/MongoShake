@@ -369,8 +369,8 @@ func checkConflict() error {
 		return fmt.Errorf("context storage should set to 'database' while master election enabled")
 	}
 	// filter
-	if len(conf.Options.FilterNamespaceBlack) != 0 && len(conf.Options.FilterNamespaceWhite) != 0 {
-		return fmt.Errorf("at most one of {filter.namespace.black, filter.namespace.white} can be given")
+	if len(conf.Options.FilterNamespaceBlack) != 0 && len(conf.Options.FilterNamespaceWhite) != 0 && len(conf.Options.FilterNamespaceBlackRegex) != 0 && len(conf.Options.FilterNamespaceWhiteRegex) != 0 {
+		return fmt.Errorf("at most one of {filter.namespace.black, filter.namespace.white, filter.namespace.blackRegex, filter.namespace.whiteRegex, } can be given")
 	}
 	// filter - filter.pass.special.db
 	if len(conf.Options.FilterPassSpecialDb) != 0 {

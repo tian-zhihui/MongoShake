@@ -2,8 +2,9 @@ package filter
 
 import (
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
 	"testing"
+
+	"go.mongodb.org/mongo-driver/bson"
 
 	"github.com/alibaba/MongoShake/v2/oplog"
 
@@ -19,7 +20,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter([]string{"gogo.test1", "gogo.test2"}, nil)
+		filter := NewNamespaceFilter([]string{"gogo.test1", "gogo.test2"}, nil, nil, nil)
 		log := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "gogo.$cmd",
@@ -32,7 +33,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter(nil, nil)
+		filter := NewNamespaceFilter(nil, nil, nil, nil)
 		log := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "zz.mm",
@@ -47,7 +48,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter(nil, []string{"zz", "cc.x"})
+		filter := NewNamespaceFilter(nil, []string{"zz", "cc.x"}, nil, nil)
 		log1 := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "zz.mm",
@@ -85,7 +86,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter(nil, nil)
+		filter := NewNamespaceFilter(nil, nil, nil, nil)
 		log := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "admin.$cmd",
@@ -101,7 +102,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter(nil, nil)
+		filter := NewNamespaceFilter(nil, nil, nil, nil)
 		log := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "admin.$cmd",
@@ -139,7 +140,7 @@ func TestNamespaceFilter(t *testing.T) {
 		fmt.Printf("TestNamespaceFilter case %d.\n", nr)
 		nr++
 
-		filter := NewNamespaceFilter(nil, []string{"ff"})
+		filter := NewNamespaceFilter(nil, []string{"ff"}, nil, nil)
 		log := &oplog.PartialLog{
 			ParsedLog: oplog.ParsedLog{
 				Namespace: "admin.$cmd",
